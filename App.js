@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { createStore, combineReducers , applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import * as Font from 'expo-font';
@@ -9,7 +8,8 @@ import ReduxThunk from 'redux-thunk';
 import SensibleNavigator from '../React-Native-App/navigation/SensibleNavigator';
 import {init} from '../React-Native-App/helpers/db';
 import inputReducer from '../React-Native-App/store/reducers/incomes';
-
+import NavigationContainer from './navigation/NavigationContainer';
+import authReducer from './store/reducers/auth';
 
 init().then(()=>{
   console.log('Init db');
@@ -24,7 +24,8 @@ init().then(()=>{
 //this is how I can actually pass and access the data from the incomesReducer 
 //and also I can combine more than one
 const rootReducer = combineReducers({
-  inputs: inputReducer
+  inputs: inputReducer,
+  auth: authReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
@@ -53,11 +54,8 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <SensibleNavigator />
+      <NavigationContainer />
     </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-
-});

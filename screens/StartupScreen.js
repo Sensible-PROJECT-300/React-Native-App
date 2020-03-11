@@ -8,7 +8,7 @@ import {
 import { useDispatch } from 'react-redux';
 
 import Colors from '../constants/colors';
-import * as authActions from '../../React-Native-App/store/actions/auth';
+import * as authActions from '../store/actions/auth';
 
 const StartupScreen = props => {
   const dispatch = useDispatch();
@@ -29,8 +29,10 @@ const StartupScreen = props => {
         return;
       }
 
+      const expirationTime = expirationDate.getTime() - new Date().getTime();
+
       props.navigation.navigate('InputOverview');
-      dispatch(authActions.authenticate(userId, token));
+      dispatch(authActions.authenticate(userId, token, expirationTime));
     };
 
     tryLogin();

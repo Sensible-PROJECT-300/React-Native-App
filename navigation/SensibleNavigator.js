@@ -1,12 +1,14 @@
 import React from 'react';
-import {  createSwitchNavigator,} from 'react-navigation';
+import {
+  createSwitchNavigator,
+  createAppContainer,
+} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator ,  DrawerItems} from 'react-navigation-drawer';
 import Colors from '../constants/colors';
-
-import { Platform } from 'react-native';
+import { Platform, SafeAreaView, Button, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
 
 //importing all the screens
 import IncomeOverviewScreen from '../screens/IncomeOverviewScreen';
@@ -16,6 +18,9 @@ import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
 import AuthScreen from '../screens/AuthScreen';
 import StartupScreen from '../screens/StartupScreen';
+import * as authActions from '../store/actions/auth';
+
+
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
@@ -117,6 +122,24 @@ const MainNavigator = createDrawerNavigator(
   {
     contentOptions: {
       activeTintColor: Colors.primary
+    },
+    contentComponent: props => {
+      const dispatch = useDispatch();
+      return (
+        <View style={{ flex: 1, paddingTop: 20 }}>
+          <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+            <DrawerItems {...props} />
+            <Button
+              title="Logout"
+              color={Colors.primary}
+              onPress={() => {
+                dispatch(authActions.logout());
+                // props.navigation.navigate('Auth');
+              }}
+            />
+          </SafeAreaView>
+        </View>
+      );
     }
   }
 );
@@ -129,6 +152,7 @@ const AuthNavigator = createStackNavigator(
     defaultNavigationOptions: defaultNavOptions
   }
 );
+
 const SensibleNavigator = createSwitchNavigator({
   Startup: StartupScreen,
   Auth: AuthNavigator,

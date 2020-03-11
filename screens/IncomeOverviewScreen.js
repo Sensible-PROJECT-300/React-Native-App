@@ -71,7 +71,7 @@ const IncomeOverviewScreen = props => {
           setIsLoading(true);
           try {
             await dispatch(InputsActions.DeleteInput(id));
-            props.navigation.goBack();
+           // props.navigation.goBack();
           } catch (err) {
             setError(err.message);
           }
@@ -102,7 +102,7 @@ const IncomeOverviewScreen = props => {
         <Text>An error occured</Text>
         <Button title="Try again" onPress={loadInputs} color={Colors.primary} />
       </View >
-      
+
     );
   }
 
