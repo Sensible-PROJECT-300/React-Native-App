@@ -1,4 +1,4 @@
-# React-Native-App-Auth
+# React-Native-App-Auth :wave:
 Download Sensible App: https://expo.io/@miulia12/sensible-finance-management
 
 Commit history: 
@@ -8,9 +8,11 @@ Commit history:
 Karl Warren   , Gabrielle Mulholland  , Maria Severin
 
 
-* Github: @S00179711	
-* Github: @S00182354 
-* Github: @S00201400
+ :man_technologist: Github: @S00179711
+ 
+:woman_technologist: Github: @S00182354 
+ 
+:woman_technologist: Github: @S00201400
  
 This is a project realized by Sensible Team. This is a application for students for financial management that helps them track their incomes and expenses and learn more about how they can manage it more easily. The information they find is: individual amount per income/expenses, total amount, receipt picture, location and description.
 ![Logo](/assets/Capture5.jpeg)
