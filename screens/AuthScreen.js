@@ -87,10 +87,11 @@ const AuthScreen = props => {
     setIsLoading(true);
     try {
       await dispatch(action);
+      props.navigation.navigate('InputOverview');
     } catch (err) {
       setError(err.message);
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const inputChangeHandler = useCallback(

@@ -15,6 +15,7 @@ import EditIncomeScreen from '../screens/EdittIncomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
 import AuthScreen from '../screens/AuthScreen';
+import StartupScreen from '../screens/StartupScreen';
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
@@ -129,6 +130,7 @@ const AuthNavigator = createStackNavigator(
   }
 );
 const SensibleNavigator = createSwitchNavigator({
+  Startup: StartupScreen,
   Auth: AuthNavigator,
   Main: MainNavigator
 });
