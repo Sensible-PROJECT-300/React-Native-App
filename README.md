@@ -4,6 +4,12 @@ Commit history:
  * https://github.com/S00201400/React-Native-App-Auth
  * https://github.com/S00201400/React-Native-App---SQLite
  
+Karl Warren   , Gabrielle Mulholland  , Maria Severin
+
+Github: @S00179711	
+Github: @S00182354 
+Github: @S00201400
+ 
 This is a project realized by Sensible Team. This is a application for students for financial management that helps them track their incomes and expenses and learn more about how they can manage it more easily. The information they find is: individual amount per income/expenses, total amount, receipt picture, location and description.
 ![Logo](/assets/Capture5.jpeg)
 ![Logo](/assets/Capture4.jpeg)
