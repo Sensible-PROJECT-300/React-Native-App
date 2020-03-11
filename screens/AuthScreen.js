@@ -7,10 +7,19 @@ import MainButton from '../components/UI/MainButton';
 import TopHeader from '../components/UI/TopHeader';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useReducer, useCallback } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, Image, Button, ScrollView, Alert } from "react-native"
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  ScrollView,
+  Alert
+} from "react-native"
 import * as Google from 'expo-google-app-auth'
 import * as Facebook from 'expo-facebook';
-
+import * as authActions from '../../React-Native-App/store/actions/auth';
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
 const formReducer = (state, action) => {
@@ -36,7 +45,9 @@ const formReducer = (state, action) => {
   return state;
 };
 
+
 const AuthScreen = props => {
+  const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -51,13 +62,20 @@ const AuthScreen = props => {
     formIsValid: false
   });
 
-  const signupHandler = () => {
-    dispatch(
-      authActions.signup(
+  const authHandler = () => {
+    let action;
+    if (isSignup) {
+      action = authActions.signup(
         formState.inputValues.email,
         formState.inputValues.password
-      )
-    );
+      );
+    } else {
+      action = authActions.login(
+        formState.inputValues.email,
+        formState.inputValues.password
+      );
+    }
+    dispatch(action);
   };
 
   const inputChangeHandler = useCallback(
@@ -99,7 +117,7 @@ const AuthScreen = props => {
         //const pictureFB = JSON.stringify(await response.json().picture);
         console.log(responseJSON);
         var json = JSON.parse(responseJSON);
-       
+
         // var regexName = /([A-Z])\w+/g;
 
         // var regexPicture = /([A-Z])\w+/g;
@@ -110,7 +128,7 @@ const AuthScreen = props => {
         //   var str = str1[0] + " " + str1[1];
         // }
 
-      //  console.log(str);
+        //  console.log(str);
         return props.navigation.navigate('Home',
           {
             name: json.name,
@@ -183,9 +201,18 @@ const AuthScreen = props => {
             />
             <View style={styles.buttonContainer}>
               <Button
-                title="Login"
+                title={isSignup ? 'Sign Up' : 'Login'}
                 color={Colors.primary}
-                onPress={signupHandler}
+                onPress={authHandler}
+              />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={`Switch to ${isSignup ? 'Login' : 'Sign Up'}`}
+                color={Colors.accent}
+                onPress={() => {
+                  setIsSignup(prevState => !prevState);
+                }}
               />
             </View>
             <View style={styles.buttonGoogle}>
