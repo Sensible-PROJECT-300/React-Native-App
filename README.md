@@ -1,10 +1,12 @@
 # React-Native-App-Auth
 Download Sensible App: https://expo.io/@miulia12/sensible-finance-management
+
 Commit history: 
  * https://github.com/S00201400/React-Native-App-Auth
  * https://github.com/S00201400/React-Native-App---SQLite
  
 Karl Warren   , Gabrielle Mulholland  , Maria Severin
+
 
 * Github: @S00179711	
 * Github: @S00182354 
